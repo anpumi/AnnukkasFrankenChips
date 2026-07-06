@@ -1,0 +1,107 @@
+esphome:
+  name: funguy
+  friendly_name: FunGuy
+  min_version: 2026.4.0
+  name_add_mac_suffix: false
+
+esp32:
+  variant: esp32c3
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Allow Over-The-Air updates
+ota:
+- platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+#ESP32-C3 sensors for Device Health monitoring in HA
+sensor:
+  - platform: wifi_signal
+    name: "WiFi"
+    id: wifi_db
+    update_interval: 60s
+  - platform: internal_temperature
+    name: "Internal Temperature"
+    update_interval: 60s
+  - platform: uptime
+    name: "Uptime Seconds"
+    id: uptime_seconds
+    
+# GPIO controlling the MOSFET gate
+# Uses hw PWM for dimming
+output:
+  - platform: ledc
+    pin: GPIO5
+    id: led_output
+    frequency: 1000 Hz
+
+light:
+  - platform: monochromatic
+    name: "FunGuy"
+    id: funguy_light
+    output: led_output
+    restore_mode: RESTORE_DEFAULT_OFF
+    default_transition_length: 300ms
+    effects:
+      - lambda:
+          name: "Gentle Candle"
+          update_interval: 150ms
+          lambda: |-
+            static float current = 0.30f;
+            static float target = 0.30f;
+
+            if (random_uint32() % 5 == 0) {
+              float change = (random_float() - 0.5f) * 0.12f;
+              target = 0.30f + change;
+
+              if (target < 0.10f) target = 0.10f;
+              if (target > 0.50f) target = 0.50f;
+            }
+
+            current += (target - current) * 0.10f;
+
+            auto call = id(funguy_light).turn_on();
+            call.set_transition_length(0);
+            call.set_brightness(current);
+            call.perform();
+
+      - lambda:
+          name: "Breathing 10-50"
+          update_interval: 100ms
+          lambda: |-
+            const float min_b = 0.10f;
+            const float max_b = 0.50f;
+
+            static float brightness = min_b;
+            static bool going_up = true;
+
+            const float step_up = (max_b - min_b) / 80.0f;
+            const float step_down = (max_b - min_b) / 120.0f;
+
+            if (going_up) {
+              brightness += step_up;
+              if (brightness >= max_b) {
+                brightness = max_b;
+                going_up = false;
+              }
+            } else {
+              brightness -= step_down;
+              if (brightness <= min_b) {
+                brightness = min_b;
+                going_up = true;
+              }
+            }
+
+            auto call = id(funguy_light).turn_on();
+            call.set_transition_length(0);
+            call.set_brightness(brightness);
+            call.perform();
