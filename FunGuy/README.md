@@ -23,7 +23,7 @@ I wanted it to become part of my Home Assistant setup instead of another battery
 - Original mushroom blown glass lamp
 
 ## Photos
-- [Coming soon](https://github.com/anpumi/AnnukkasFrankenChips/tree/main/FunGuy/Photos)
+- [Photos](https://github.com/anpumi/AnnukkasFrankenChips/tree/main/FunGuy/Photos)
 
 ## Wiring diagram
 - Coming soon
