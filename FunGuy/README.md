@@ -3,7 +3,7 @@ I’ve had this handmade blown-glass mushroom lamp for about a year.
 The glass is gorgeous, but the electronics weren’t. It came with a white plastic battery compartment that offered three functions: On, Off, 6-hour timer.
 I wanted it to become part of my Home Assistant setup instead of another battery-powered decoration.
 
-### Please note that this repo documents the project as it happened, rather than how I wish it had happened. Therefore, if you're planning on building your own version, please read the Lessons Learned section below first. It'll probably save you time and materials.
+### This repo documents the project as it happened, rather than how I wish it had happened. Therefore, if you're planning on building your own version, please read the Lessons Learned section below first. It'll probably save you time and materials.
 
 ## Architecture
 <img width="300" height="451" alt="architecture drawio" src="https://github.com/user-attachments/assets/39ff01aa-470c-4de2-8eb0-f686be188183" />
@@ -23,10 +23,22 @@ I wanted it to become part of my Home Assistant setup instead of another battery
 - Original mushroom blown glass lamp
 
 ## Photos
-- Coming soon
+- [Coming soon](https://github.com/anpumi/AnnukkasFrankenChips/tree/main/FunGuy/Photos)
 
 ## Wiring diagram
 - Coming soon
 
 ## Build log
 - Coming soon
+
+## Lessons learned
+- https://github.com/anpumi/AnnukkasFrankenChips/blob/main/FunGuy/Photos/09-v1_oops.png
+- The perfboard was a few millimeters too large to fit inside the printed base.
+- Slot design is not ideal for threading the JST connector through.
+- CAD: the first printed revision has a 2mm gap between the base and the lid because I didn't take into account the thickness of the mating wall. Fixing for v2.
+
+## Version 2 notes
+- Replace the original LED seed light string with individually addressable WS2811 clear wire seed pixel string.
+    - 5V, 10cm pitch, 20 LEDs/2 meter length.
+- Possibly add a capacitive touch sensor to the side of the base.
+- Improve base CAD design.
