@@ -1,6 +1,6 @@
 # FunGuy
 I’ve had this handmade blown-glass mushroom lamp for about a year.
-The glass is gorgeous, but the electronics weren’t. It came with a white plastic battery compartment that offered three functions: On, Off, 6-hour timer.
+The glass is gorgeous, but the electronics were... just regular. It came with a white plastic battery compartment that offered three functions: On, Off, 6-hour timer.
 I wanted it to become part of my Home Assistant setup instead of another battery-powered decoration.
 
 ### This repo documents the project as it happened, rather than how I wish it had happened. Therefore, if you're planning on building your own version, please read the Lessons Learned section below first. It'll probably save you time and materials.
