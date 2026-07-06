@@ -28,7 +28,7 @@ I wanted it to become part of my Home Assistant setup instead of another battery
 ## Wiring diagram
 - Coming soon
 
-## Build log
+## Build notes
 - Coming soon
 
 ## Lessons learned
@@ -44,6 +44,9 @@ I wanted it to become part of my Home Assistant setup instead of another battery
 - Improve base CAD design.
 
 ## ToDo
+- [ ] Link to Waveshare ESP32-C3 docs.
+- [ ] Create wiring diagram in KiCad.
+- [ ] Write build notes.
 - [ ] Increase base dimensions to accomodate a 40x60 perfboard.
 - [ ] Redesign connector routing.
 - [ ] Fix Lid height.
